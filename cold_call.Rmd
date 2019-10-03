@@ -1,0 +1,28 @@
+---
+title: "cold_call"
+author: "Grace Kim"
+date: "10/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(googlesheets4)
+sheets_deauth()
+x <- read_sheet("https://docs.google.com/spreadsheets/d/1LtupNx8yBeJzK6UyGkZ5u-aUAPzU90K9C4r2RTJwWqg/edit#gid=2132522624")
+
+```
+
+```{r}
+cold_call <- function(){
+  sheets_deauth()
+  x <- read_sheet("https://docs.google.com/spreadsheets/d/1LtupNx8yBeJzK6UyGkZ5u-aUAPzU90K9C4r2RTJwWqg/edit#gid=2132522624") %>% 
+  select(Student) %>% 
+  sample_n(1) %>% 
+    pull(Student)
+  
+  return(x)
+}
+```
+
